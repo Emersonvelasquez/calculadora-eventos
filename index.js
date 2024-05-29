@@ -1,19 +1,26 @@
-const uno = document.querySelector('#uno')
-const dos = document.querySelector('#dos')
-const tres = document.querySelector('#tres')
-const cuatro = document.querySelector('#cuatro')
-const cinco = document.querySelector('#cinco')
-const seis = document.querySelector('#seis')
-const siete = document.querySelector('#siete')
-const ocho = document.querySelector('#ocho')
-const nueve = document.querySelector('#nueve')
-const cero = document.querySelector('#cero')
-const marcador = document.querySelector('#marcador')
-const igual = document.querySelector('#igual')
-const sumar = document.querySelector('#sumar')
-const dividir = document.querySelector('#dividir')
-const eliminar = document.querySelector('#eliminar')
-const multiplicar = document.querySelector('#multiplicar')
+let numero = ''
+let guardar = '0'
+
+
+let uno = document.querySelector('#uno')
+let dos = document.querySelector('#dos')
+let tres = document.querySelector('#tres')
+let cuatro = document.querySelector('#cuatro')
+let cinco = document.querySelector('#cinco')
+let seis = document.querySelector('#seis')
+let siete = document.querySelector('#siete')
+let ocho = document.querySelector('#ocho')
+let nueve = document.querySelector('#nueve')
+let cero = document.querySelector('#cero')
+
+
+let marcador = document.querySelector('#marcador')
+let igual = document.querySelector('#igual')
+let sumar = document.querySelector('#sumar')
+let dividir = document.querySelector('#dividir')
+let eliminar = document.querySelector('#eliminar')
+let multiplicar = document.querySelector('#multiplicar')
+
 
 
 uno.addEventListener('click', () => {
@@ -63,3 +70,9 @@ eliminar.addEventListener('click', () => {
 })
 
 
+
+
+igual.addEventListener('click' , () =>{
+    numero 
+})
+   
