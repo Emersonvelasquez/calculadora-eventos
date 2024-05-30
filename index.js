@@ -1,7 +1,7 @@
-let numero = ''
+
 let guardar = '0'
 
-
+let numero = document.querySelector('#numero')
 let uno = document.querySelector('#uno')
 let dos = document.querySelector('#dos')
 let tres = document.querySelector('#tres')
@@ -21,7 +21,7 @@ let dividir = document.querySelector('#dividir')
 let eliminar = document.querySelector('#eliminar')
 let multiplicar = document.querySelector('#multiplicar')
 
-
+let = guardar = '0'
 
 uno.addEventListener('click', () => {
     marcador.value += ('1')
@@ -70,9 +70,7 @@ eliminar.addEventListener('click', () => {
 })
 
 
-
-
-igual.addEventListener('click' , () =>{
-    numero 
+igual.addEventListener('click',() => {
+    guardar = parseInt(numero.value) + parseInt(numero.value)
+    marcador.value = (guardar)
 })
-   
