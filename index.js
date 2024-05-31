@@ -1,76 +1,95 @@
-
-let guardar = '0'
-
-let numero = document.querySelector('#numero')
-let uno = document.querySelector('#uno')
-let dos = document.querySelector('#dos')
-let tres = document.querySelector('#tres')
-let cuatro = document.querySelector('#cuatro')
-let cinco = document.querySelector('#cinco')
-let seis = document.querySelector('#seis')
-let siete = document.querySelector('#siete')
-let ocho = document.querySelector('#ocho')
-let nueve = document.querySelector('#nueve')
-let cero = document.querySelector('#cero')
-
-
+let numeros = document.querySelectorAll('.numero');
 let marcador = document.querySelector('#marcador')
-let igual = document.querySelector('#igual')
-let sumar = document.querySelector('#sumar')
-let dividir = document.querySelector('#dividir')
-let eliminar = document.querySelector('#eliminar')
-let multiplicar = document.querySelector('#multiplicar')
-
-let = guardar = '0'
-
-uno.addEventListener('click', () => {
-    marcador.value += ('1')
-})
-dos.addEventListener('click', () => {
-    marcador.value += '2'
-})
-tres.addEventListener('click', () => {
-    marcador.value += '3'
-})
-cuatro.addEventListener('click', () => {
-    marcador.value += '4'
-})
-cinco.addEventListener('click', () => {
-    marcador.value += '5'
-})
-seis.addEventListener('click', () => {
-    marcador.value += '6'
-})
-siete.addEventListener('click', () => {
-    marcador.value += '7'
-})
-ocho.addEventListener('click', () => {
-    marcador.value += '8'
-})
-nueve.addEventListener('click', () => {
-    marcador.value += '9'
-})
-cero.addEventListener('click', () => {
-    marcador.value += '0'
-})
-sumar.addEventListener('click', () => {
-    marcador.value += '+'
-})
-restar.addEventListener('click', () => {
-    marcador.value += '-'
-})
-multiplicar.addEventListener('click', () => {
-    marcador.value += '*'
-})
-dividir.addEventListener('click', () => {
-    marcador.value += '%'
-})
-eliminar.addEventListener('click', () => {
-    marcador.value = ' '
-})
+let btnsaccion = document.querySelectorAll('.accion');
+let primernumero = 0;
+let segundonumero = 0;
+let acumulador = 0;
+let signo = ''
+let primeravez = true;
 
 
-igual.addEventListener('click',() => {
-    guardar = parseInt(numero.value) + parseInt(numero.value)
-    marcador.value = (guardar)
+numeros.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        marcador.value += btn.value
+    })
+})
+
+btnsaccion.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        if (e.target.value == '+' || e.target.value == '-' ||
+            e.target.value == '/' || e.target.value == '*' ||
+            e.target.value == 'clear'
+        ) {
+            primernumero = parseInt(marcador.value)
+            switch (e.target.value) {
+                case '+':
+                    acumulador = acumulador + primernumero
+                    break;
+                case '-':
+                    if (primeravez) {
+                        acumulador = primernumero + Math.abs(acumulador)
+                        primeravez = false;
+                    } else if (acumulador >= 0) {
+                        // console.log(acumulador,primernumero)
+                        acumulador = Math.abs(acumulador) - primernumero
+                    } else {
+                        // console.log(acumulador,primernumero)
+                        acumulador = acumulador - primernumero
+                    }
+                    break;
+                case '*':
+                    if (primeravez) {
+                        acumulador = primernumero + acumulador
+                        primeravez = false;
+
+                    } else {
+                        acumulador = acumulador * primernumero
+                    }
+                    break;
+                case '/':
+                    if (primeravez) {
+                        acumulador = primernumero + acumulador
+                        primeravez = false;
+
+                    } else {
+                        acumulador = acumulador / primernumero
+                    }
+            }
+            marcador.value = ' '
+            signo = e.target.value
+
+        } else if (e.target.value == '=') {
+            if (signo == '+') {
+                segundonumero = parseInt(marcador.value)
+                let resultado = acumulador + segundonumero;
+                marcador.value = resultado
+            }
+            else if (signo == '/') {
+                segundonumero = parseInt(marcador.value)
+                let resultado = acumulador / segundonumero;
+                marcador.value = resultado
+                primeravez = true
+            }
+            else if (signo == '-') {
+                segundonumero = parseInt(marcador.value)
+                let resultado = acumulador - segundonumero;
+                marcador.value = resultado
+            }
+            else if (signo == '*') {
+                segundonumero = parseInt(marcador.value)
+                let resultado = acumulador * segundonumero;
+                marcador.value = resultado
+                primeravez = true
+            }
+            else if (e.target.value == 'c') {
+                marcador.value = ''
+            }
+            else {
+            }
+            acumulador = 0;
+            resultado = 0;
+
+
+        }
+    })
 })
