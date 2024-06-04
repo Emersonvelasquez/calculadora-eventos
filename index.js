@@ -2,6 +2,7 @@ let numeros = document.querySelectorAll('.numero');
 let marcador = document.querySelector('#marcador')
 let btnsaccion = document.querySelectorAll('.accion');
 let primernumero = 0;
+let eliminar = document.querySelector('.clear')
 let segundonumero = 0;
 let acumulador = 0;
 let signo = ''
@@ -14,82 +15,123 @@ numeros.forEach((btn) => {
     })
 })
 
+const suma = () => {
+    acumulador = acumulador + primernumero
+}
+const resta = () => {
+    if (primeravez) {
+        acumulador = primernumero - Math.abs(acumulador)
+        primeravez = false;
+    } else if (acumulador >= 0) {
+        acumulador = Math.abs(acumulador) - primernumero
+    } else {
+        acumulador = acumulador - primernumero
+    }
+}
+const multiplicador = () => {
+    if (acumulador == 0) {
+        acumulador = 1
+        acumulador = primernumero * acumulador
+
+    } else {
+        acumulador = acumulador * primernumero
+    }
+}
+const division = () => {
+    if (acumulador == 0) {
+        acumulador = primernumero + acumulador
+
+    } else {
+        acumulador = acumulador / primernumero
+    }
+}
+const igual = () => {
+    if (signo == '+') {
+        segundonumero = parseInt(marcador.value)
+        acumulador = acumulador + segundonumero;
+        marcador.value = acumulador
+    }
+    else if (signo == '/') {
+        segundonumero = parseInt(marcador.value)
+        acumulador = acumulador / segundonumero;
+        marcador.value = acumulador
+    }
+    else if (signo == '-') {
+        segundonumero = parseInt(marcador.value)
+        acumulador = acumulador - segundonumero;
+        marcador.value = acumulador
+        primeravez = true
+    }
+    else if (signo == '*') {
+        segundonumero = parseInt(marcador.value)
+        acumulador = acumulador * segundonumero;
+        marcador.value = acumulador
+        signo = '';
+    }
+    else if (e.target.value == 'c') {
+        marcador.value = ''
+    }
+}
+
+
 btnsaccion.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        if (e.target.value == '+' || e.target.value == '-' ||
-            e.target.value == '/' || e.target.value == '*' ||
-            e.target.value == 'clear'
-        ) {
+        if (marcador.value == '') {
+            alert('ingrese un numero')
+        }
+        else if (e.target.value != '=') {
             primernumero = parseInt(marcador.value)
+
+
+
+
             switch (e.target.value) {
                 case '+':
-                    acumulador = acumulador + primernumero
+                    if (signo != '') {
+                        igual();
+                    } else {
+                        suma();
+                    }
                     break;
                 case '-':
-                    if (primeravez) {
-                        acumulador = primernumero + Math.abs(acumulador)
-                        primeravez = false;
-                    } else if (acumulador >= 0) {
-                        // console.log(acumulador,primernumero)
-                        acumulador = Math.abs(acumulador) - primernumero
+                    if (signo != '') {
+                        igual();
                     } else {
-                        // console.log(acumulador,primernumero)
-                        acumulador = acumulador - primernumero
+                        resta();
                     }
                     break;
                 case '*':
-                    if (primeravez) {
-                        acumulador = primernumero + acumulador
-                        primeravez = false;
-
+                    if (signo != '') {
+                        igual();
                     } else {
-                        acumulador = acumulador * primernumero
+                        multiplicador();
                     }
                     break;
                 case '/':
-                    if (primeravez) {
-                        acumulador = primernumero + acumulador
-                        primeravez = false;
-
+                    if (signo != '') {
+                        igual();
                     } else {
-                        acumulador = acumulador / primernumero
+                        division();
                     }
             }
             marcador.value = ' '
             signo = e.target.value
 
-        } else if (e.target.value == '=') {
-            if (signo == '+') {
-                segundonumero = parseInt(marcador.value)
-                let resultado = acumulador + segundonumero;
-                marcador.value = resultado
-            }
-            else if (signo == '/') {
-                segundonumero = parseInt(marcador.value)
-                let resultado = acumulador / segundonumero;
-                marcador.value = resultado
-                primeravez = true
-            }
-            else if (signo == '-') {
-                segundonumero = parseInt(marcador.value)
-                let resultado = acumulador - segundonumero;
-                marcador.value = resultado
-            }
-            else if (signo == '*') {
-                segundonumero = parseInt(marcador.value)
-                let resultado = acumulador * segundonumero;
-                marcador.value = resultado
-                primeravez = true
-            }
-            else if (e.target.value == 'c') {
-                marcador.value = ''
-            }
-            else {
-            }
+        } else {
+            igual()
             acumulador = 0;
-            resultado = 0;
-
-
         }
+
+
+
+
     })
+})
+eliminar.addEventListener('click', () => {
+    primernumero = 0;
+    segundonumero = 0;
+    signo = ''
+    marcador.value = ''
+    acumulador = 0;
+    primeravez = true
 })

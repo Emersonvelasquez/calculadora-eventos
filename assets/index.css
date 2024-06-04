@@ -1,24 +1,25 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    
+
 }
-.padre{
-    background-color: black;
+
+.padre {
+    background-color: rgb(56, 56, 194);
     width: 100%;
     top: 100%;
 }
-.container{
+
+.container {
     margin-top: 15%;
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     flex-direction: row;
-    
+
 }
 
-.card{
+.card {
     text-align: center;
 }
-
