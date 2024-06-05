@@ -66,11 +66,12 @@ const igual = () => {
         segundonumero = parseInt(marcador.value)
         acumulador = acumulador * segundonumero;
         marcador.value = acumulador
-        signo = '';
+        
     }
     else if (e.target.value == 'c') {
         marcador.value = ''
     }
+    signo = '';
 }
 
 
@@ -81,9 +82,6 @@ btnsaccion.forEach((btn) => {
         }
         else if (e.target.value != '=') {
             primernumero = parseInt(marcador.value)
-
-
-
 
             switch (e.target.value) {
                 case '+':
@@ -121,9 +119,6 @@ btnsaccion.forEach((btn) => {
             igual()
             acumulador = 0;
         }
-
-
-
 
     })
 })
